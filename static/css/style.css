@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #eae0d5; /* 柔和的背景色 */
+}
+#chat-container {
+    width: 400px;
+    height: 600px;
+    border: 1px solid #c5c5c5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f5f0; /* 柔和的聊天框背景色 */
+}
+
+#chat-box {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+#input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #c5c5c5;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #f6f5f0;
+    color: #595959; /* 字體顏色 */
+}
+
+#send-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #a3a3a3; /* 柔和的按鈕背景色 */
+    color: white;
+    cursor: pointer;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 75%;
+}
+
+.message.user {
+    background-color: #b4a7d6; /* 柔和的用戶消息背景色 */
+    color: white;
+    align-self: flex-end;
+    margin-left: 60px;
+}
+
+.message.bot {
+    background-color: #d9d2e9; /* 柔和的機器人消息背景色 */
+    color: black;
+    align-self: flex-start;
+}
+
