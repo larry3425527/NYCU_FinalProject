@@ -5,6 +5,8 @@ import time
 import socket
 import pickle
 
+from rag import retrieve
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,9 +18,11 @@ def chat():
     user_message = request.json.get('message')
     # print(type(user_message))
     
+    retrieved_message = retrieve(user_message)
+    
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect(('localhost', 8101))
-    data = pickle.dumps(user_message)
+    data = pickle.dumps(retrieved_message)
     client_socket.send(data)
     
     response = client_socket.recv(4096)
