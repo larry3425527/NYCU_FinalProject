@@ -14,6 +14,10 @@ def set_vector_db():
 
     for txt_file in txt_files:
         with open(txt_file, 'r') as fopen:
+            sentence = fopen.readline()
+            if sentence[-2] == "?" :
+                print(sentence)
+                continue
             texts.append(fopen.readline())
 
     text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=10)
@@ -44,12 +48,16 @@ def retrieve(user_query):
     
     chromadb = Chroma(embedding_function=embeddings_model, persist_directory=database_path)
     
-    prompts = chromadb.similarity_search(user_query, 1)
+    prompts = chromadb.similarity_search_with_score(user_query, 1)
     
-    return_message = user_query + " " + prompts[0].page_content
+    return_message = user_query
     
-    print(type(return_message))
-    print(return_message)
+    if prompts[0][1] >= 0.5:
+        print(prompts[0][1])
+        return_message = return_message + " " + prompts[0][0].page_content
+    
+    # print(type(return_message))
+    # print(return_message)
     
     return return_message
 
